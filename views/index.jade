@@ -1,0 +1,39 @@
+include includes/nav
+
+div.container
+	div.row
+		div#leftSide.span6
+			div#preview
+				h1.logo mustwatch.it
+				p
+					em I'm a To-do list for your Videos, and I'm awesome!
+				p
+					a.twitter-follow-button(href="https://twitter.com/mustwatchit", data-show-count="false") Follow @mustwatchit
+					script
+						!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+		div#rightSide.span6
+			h2 Welcome
+			p mustwatch.it is a To-do list app/service for saving and managing videos you want to watch at a later date.
+			p To register an account just log in with your desired authentication method at the top right of this page, we'll handle the rest.
+			p If you already have an account, go to the <a class="label label-warning" href="/bookmarklet">Bookmarklet</a> page or the <a class="label label-warning" href="/faq">Frequently Asked Questions</a> to find out more information on how to use mustwatch.it
+	div.row
+		- if (recentVideos.length)
+			ul#videos.thumbnails
+				- recentVideos.forEach(function(item){
+					- if (item && item.provider)
+						li.span3
+							.video.thubnail
+								.imgBg
+									a(href="/video/#{item.provider}/#{item.id}")
+										img(src="#{item.thumbnail}")
+								a.title(href="/video/#{item.provider}/#{item.id}") #{item.title}
+								a.source(href="#{item.source}") #{item.source}
+								span
+									- if (item.watchers === 1)
+										span.mustwatchers #{item.watchers} mustwatcher
+									- else 
+										span.mustwatchers #{item.watchers} mustwatchers
+				- })
+		- else
+			p Hmmmm, no recent videos... not good ;{
+

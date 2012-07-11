@@ -1,0 +1,198 @@
+
+
+body.mustwatchVisible {
+	overflow: hidden;
+}
+
+#mustwatch_select_overlay {
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.75);
+	font-size: 12px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#mustwatch_select_overlay_inner {
+	max-width: 70%;
+	max-height: 70%;
+	background-color: #cccccc;
+	margin: 5% auto;
+	padding: 20px;
+	border-radius: 5px;
+	position: relative;
+}
+#mustwatch_select_overlay_inner .header {
+	text-align: center;
+	display: block;
+	width: auto;
+	float: none;
+	margin-bottom: 20px;
+}
+#mustwatch_select_overlay_inner .header h1 {
+	width: 200px;
+	height: 69px;
+	background: url('http://www.mustwatch.it/img/logo-small.png') top left no-repeat transparent;
+	margin: 0 auto;
+	text-indent: -8999em;
+}
+#mustwatch_select_overlay_inner .close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+#mustwatch_select_overlay_inner ul {
+	overflow-y: scroll;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	height: 500px;
+}
+#mustwatch_select_overlay_inner ul li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 33%;
+	float: left;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+/*single video style*/
+#mustwatch_select_overlay.singleVideo #mustwatch_select_overlay_inner {
+	width: 320px;
+}
+#mustwatch_select_overlay.singleVideo #mustwatch_select_overlay_inner ul {
+	overflow: auto;
+	height: auto;
+	display: block;
+	width: auto;
+}
+#mustwatch_select_overlay.singleVideo #mustwatch_select_overlay_inner ul li {
+	float: none;
+	display: block;
+	width: auto;
+}
+#mustwatch_select_overlay.singleVideo #mustwatch_select_overlay_inner ul li .mustwatch_vid {
+	margin: 0;
+}
+#mustwatch_select_overlay_inner ul li img {
+	float: left;
+	width: 100px;
+}
+
+#mustwatch_select_overlay_inner ul li p {
+	margin-left: 110px;
+	margin-right: 20px;
+	margin-top: 0;
+}
+
+#mustwatch_select_overlay_inner ul .mustwatch_vid {
+	padding: 10px;
+	position: relative;
+	margin-right: 20px;
+	overflow: auto;
+	border-radius: 5px;
+	background-color: #aaa;
+}
+#mustwatch_select_overlay_inner ul .mustwatch_vid:hover {
+	border-radius: 5px;
+	background-color: #FFD200;
+	color: #000;
+	cursor: pointer;
+	-moz-box-shadow:    inset 0 0 3px #000000;
+   	-webkit-box-shadow: inset 0 0 3px #000000;
+   	box-shadow:         inset 0 0 3px #000000;
+}
+
+
+
+#mustwatch_select_overlay_inner ul .mustwatch_vid a,
+#mustwatch_select_overlay_inner ul .mustwatch_vid a:hover {
+	color: #000 !important;
+	text-decoration: none !important;
+}
+
+#mustwatch_select_overlay_inner iframe {
+	border: 0 none !important;
+	width: 100% !important;
+	display: block !important;
+	float: none !important;
+}
+
+#mustwatch_select_overlay_inner p.mustwatchSuccess {
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+	margin: 20px;
+	color: #FFD200;
+	text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+}
+
+
+
+/*Media Queries*/
+
+@media screen and (max-width: 600px) {
+	#mustwatch_select_overlay_inner {
+		max-width: 100%;
+		max-height: 100%;
+		height: 100%;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		border-radius: 0;
+	}
+
+	#mustwatch_select_overlay_inner .header {
+		padding: 20px;
+		position: static;
+
+	}
+  	#mustwatch_select_overlay_inner ul {
+  		height: 100%;
+  	}
+  	#mustwatch_select_overlay_inner ul li {
+  		width: auto;
+  		display: block;
+  		float: none;
+  		margin: 0 0 10px 20px;
+  	}
+
+  	/*single video style*/
+	#mustwatch_select_overlay.singleVideo #mustwatch_select_overlay_inner {
+		width: auto;
+		display: block;
+	}
+	#mustwatch_select_overlay.singleVideo #mustwatch_select_overlay_inner ul li {
+		margin: 0 20px 10px;
+	}
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+	#mustwatch_select_overlay_inner ul li {
+		width: auto;
+		display: block;
+		float: none;
+		margin: 10px 0 0 20px;
+	}
+
+
+}
+
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+	#mustwatch_select_overlay_inner ul li {
+		width: 50%;
+	}
+}
+
+
+
+
+
+
+

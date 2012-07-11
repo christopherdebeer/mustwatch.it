@@ -1,0 +1,34 @@
+include includes/nav
+
+div.container
+	div.row
+		div#leftSide.span6
+			div#preview
+				h1.logo mustwatch.it
+				p
+					em I'm a To-do list for your Videos, and I'm awesome!
+				p
+					a.twitter-follow-button(href="https://twitter.com/mustwatchit", data-show-count="false") Follow @mustwatchit
+					script
+						!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+			h2 About
+			p mustwatch.it was create by me (<a href="http://twitter.com/christopherdb">Christopher de Beer</a>) as a side project.
+			p I got sick of adding videos to my favorites on specific video sites (ie: Youtube or Vimeo), and then either forgetting that I had un-watched videos on yet another video site, or not being able to remmeber which site to go to to find the video I was looking for. That, and the fact that when looking at any of my favorites on these sites, I couldn't know (unless I specifically remembered) whether I'd watched a video or not.
+			p And so... mustwatch.it is the manifestation of me solving this problem for myself, and hopefully others. Scratching an itch, so to speak.
+			p Get in touch <a class="label label-warning" href="mailto:hello@mustwatch.it">hello@mustwatch.it</a>
+			h3 Colophon
+			p This web-app/service was created using JavaScript in Node.js, and is hosted on Amazons EC2. For persistence we're using MongoDB and Redis. On the backend some of the modules we make use of are: Express, Everyauth, Mongoose, Node_redis, Jade, and Underscore. And on the front-end, we're using Twitter Bootstrap to handle base styles (just for speed's sake), and jQuery. While the Bookmarklet, needing to be more lightweight uses Ender, Bean, Qwery, Reqwest and Bonzo. 
+		div#rightSide.span6
+			h2 Frequently Asked Questions
+			p I'm afraid there aren't many frequently asked questions yet. Best you lot get asking! <br/>You can contact us at <a class="label label-warning" href="mailto:hello@mustwatch.it">hello@mustwatch.it</a>
+			h3 Which video providers work?
+			p At the moment we're only supporting <strong>Youtube</strong> and <strong>Vimeo</strong> videos, but we'll add other providers if the demand is great enough. Let us know.
+			h3 What broswers do you support?
+			p Currently we only support modern browsers. And we think thats a good thing.
+			h2 Troubleshooting
+			p Hints and tips for when you get stuck.
+			h3 0 Videos found
+			p At the moment we're only supporting <strong>Youtube</strong> and <strong>Vimeo</strong> videos, but we'll add other providers if the demand is great enough.
+			p Some Vimeo videos can't be added due to the creator specifying that it be private - and theres not much we can do about that.
+			h3 Doesnt work on iPhone/iPad
+			p We're working on this, the way we were handling logging in (ie: with a popup) doesnt work well on mobile devices. This will be fixed soon.

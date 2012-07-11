@@ -1,0 +1,5 @@
+lib/config.js
+*.log
+f
+node_modules
+

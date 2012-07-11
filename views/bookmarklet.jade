@@ -1,0 +1,37 @@
+include includes/nav
+
+div.container
+	div.row
+		div#leftSide.span6
+			div#preview
+				h1.logo mustwatch.it
+				p
+					em I'm a To-do list for your Videos, and I'm awesome!
+				p
+					a.twitter-follow-button(href="https://twitter.com/mustwatchit", data-show-count="false") Follow @mustwatchit
+					script
+						!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+			h2 Lets get started
+			p To use mustwatch.it you need to get the bookmarklet. Look under <a href="#get-the-bookmarklet" class="label label-warning">Get the Bookmarklet</a> on this page for details.
+			p Once you have the bookmarklet, then whilst you're browsing the internets, if you come across a video that you want to save for later, just click on the bookmarklet.
+			p We'll scan the page you're on for all the videos we can find, and present you with a list, (provided you're logged in) just click on the video you want to save and we'll add it to your account for later.
+			p That's it really.
+			p If you get stuck, or something isnt working, check out the Troubleshooting section on the <a href="/faq" class="label label-warning">Frequesntly Asked Questions</a> page, or get in touch at <a class="label label-warning" href="mailto:hello@mustwatch.it">hello@mustwatch.it</a>.
+		div#rightSide.span6
+			h2#get-the-bookmarklet Get the Bookmarklet
+			p This bookmarklet works on any modern browser like Firefox, Opera, Chrome, Safari, and even IE9.
+			p <a href="javascript:(function(){if(!document.getElementById('mustwatchbookmarklet')){var%20y=document.createElement('script');y.id='mustwatchbookmarklet';y.type='text/javascript';y.src='http://www.mustwatch.it/js/mustwatch-bookmarklet.js?j='+(Math.random());document.getElementsByTagName('head')[0].appendChild(y)}else{mustwatch.init();}})();" class="btn btn-warning">mustwatch.it!</a> &#8592; Drag and drop the button onto your bookmarks/favorites bar.
+			h2 For Mobile (iOS)
+			p If Safari's bookmarks sync with your iOS device, you should be able to go to your favorites and find the <strong>mustwatch.it!</strong> bookmark.
+			p However, if that is not the case, you can add the bookmarklet onto your device by following this small guide.
+			div#guide
+				ol
+					li Select the code bellow and Copy all the text.<br><textarea rows="3" cols="20" onclick="select()">javascript:(function(){if(!document.getElementById('mustwatchbookmarklet')){var%20y=document.createElement('script');y.id='mustwatchbookmarklet';y.type='text/javascript';y.src='http://www.mustwatch.it/js/mustwatch-bookmarklet.js?j='+(Math.random());document.getElementsByTagName('head')[0].appendChild(y)}else{mustwatch.init();}})();</textarea>
+					li Bookmark this page.
+					li Open your bookmarks.
+					li Press the <em>Edit</em> button on the lower, left-hand corner.
+					li Find and select <strong>mustwatch.it</strong>.
+					li On the <em>Edit Bookmark</em> page, delete the URL text.
+					li Once cleared, Paste the code.
+					li Press <em>Done</em>.
+

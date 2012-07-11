@@ -1,0 +1,30 @@
+div.navbar.navbar-fixed-top
+	div.navbar-inner
+		div.container
+			a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			//- a.brand(href="http://www.mustwatch.it") mustwatch.it
+			div.nav-collapse
+				ul.nav
+					li
+						a(href="/") Home
+					- if (req.loggedIn)
+						li
+							a(href="/mine") My Videos
+					li
+						a(href="/bookmarklet") The Bookmarklet
+					li
+						a(href="/faq") FAQ
+				- if (req.loggedIn)
+					p.navbar-text.pull-right 
+						a(href="/auth/logout") Sign out
+				- else
+					p.navbar-text.pull-right Sign in with&nbsp;
+						a(href="/auth/twitter", title="Twitter") Twitter
+						| ,&nbsp;
+						a(href="/auth/facebook", title="Facebook") Facebook
+						| , or&nbsp;
+						a(href="/auth/google", title="Google") Google

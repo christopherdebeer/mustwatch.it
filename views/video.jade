@@ -1,0 +1,47 @@
+include includes/nav
+.darkWrapper
+	.container
+		.row
+			- if (video.provider === "youtube")
+				iframe(width="1280", height="720", src="http://www.youtube.com/embed/#{video.id}", frameborder="0", webkitAllowFullScreen, mozallowfullscreen, allowFullScreen)
+			- if (video.provider === "vimeo")
+				iframe(src="http://player.vimeo.com/video/#{video.id}?color=ff9933", width="1280", height="719", frameborder="0", webkitAllowFullScreen, mozallowfullscreen, allowFullScreen)
+div.container
+	div#videoMeta.row
+		div#info.span6
+			h1 #{video.title}
+			p Saved from:&nbsp;
+				a.source(href="#{video.source}") #{video.source}
+			- if (video.score > 1)
+				p #{video.score} mustwatchers
+			- if (video.score === 1)
+				p #{video.score} mustwatcher
+			.buttons
+				- if (req.loggedIn)
+					- if (!hasVideo)
+						a.btn.btn-large.btn-warning.addVideo(href="#", title="Add this video to your account", data-id="#{video.id}", data-provider="#{video.provider}") Add to your Videos
+						a.btn.hidden.btn-large.btn-warning.markAsWatched(href="#", title="Mark as watched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as watched
+						a.btn.hidden.btn-large.btn-warning.markAsUnwatched(href="#", title="Mark as unwatched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as unwatched
+					- if (hasVideo && video.watched) 
+						a.btn.hidden.btn-large.btn-warning.addVideo(href="#", title="Add this video to your account", data-id="#{video.id}", data-provider="#{video.provider}") Add to your Videos
+						a.btn.hidden.btn-large.btn-warning.markAsWatched(href="#", title="Mark as watched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as watched
+						a.btn.btn-large.btn-warning.markAsUnwatched(href="#", title="Mark as unwatched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as unwatched
+					- else 
+						a.btn.btn-large.btn-warning.addVideo(href="#", title="Add this video to your account", data-id="#{video.id}", data-provider="#{video.provider}") Add to your Videos
+						a.btn.btn-large.btn-warning.markAsWatched(href="#", title="Mark as watched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as watched
+						a.btn.hidden.btn-large.btn-warning.markAsUnwatched(href="#", title="Mark as unwatched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as unwatched
+				- else
+					p Create an account or log in for more options.
+
+
+		div#comments.span6
+			div(id="disqus_thread")
+			script(type="text/javascript")
+				var disqus_shortname = 'mustwatchit';
+				(function() {
+					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+				})();
+			noscript Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+			a(href="http://disqus.com", class="dsq-brlink") comments powered by <span class="logo-disqus">Disqus</span>
