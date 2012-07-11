@@ -26,7 +26,7 @@ div.container
 						a.btn.hidden.btn-large.btn-warning.addVideo(href="#", title="Add this video to your account", data-id="#{video.id}", data-provider="#{video.provider}") Add to your Videos
 						a.btn.hidden.btn-large.btn-warning.markAsWatched(href="#", title="Mark as watched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as watched
 						a.btn.btn-large.btn-warning.markAsUnwatched(href="#", title="Mark as unwatched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as unwatched
-					- else 
+					- else if (hasVideo && !video.watched)
 						a.btn.btn-large.btn-warning.addVideo(href="#", title="Add this video to your account", data-id="#{video.id}", data-provider="#{video.provider}") Add to your Videos
 						a.btn.btn-large.btn-warning.markAsWatched(href="#", title="Mark as watched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as watched
 						a.btn.hidden.btn-large.btn-warning.markAsUnwatched(href="#", title="Mark as unwatched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as unwatched

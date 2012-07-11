@@ -116,7 +116,7 @@ a.btn-warning {
 #videos li a.title {
     display: block;
     max-height: 2.7em;
-    color: #ffd200;
+    color: #000;
     overflow: hidden;
     text-overflow: ellipsis;
 }
