@@ -49,16 +49,6 @@ app.configure(function(){
 	 
 	  next();
 	});
-	// app.use(function(req, res, next) {
-	// 	console.log("www host checker - valid: ", req.headers.host === "www.mustwatch.it");
-	//   	if (req.headers.host !== "www.mustwatch.it") {
-	// 	  	res.writeHead(302, {
-	// 		  'Location': "http://www.mustwatch.it" + req.url
-	// 		  //add other headers here...
-	// 		});
-	// 		res.end();
-	// 	} else next();
-	// });
 });
 
 
@@ -348,6 +338,34 @@ app.get('/addVideo/:provider/:id', function(req, res){
 	} else {
 		res.writeHead(401, {'Content-Type': 'text/plain'});
 		res.end("No user logged in.")
+	}
+})
+
+
+
+app.get('/addEmail', function(req, res){
+	var query = url.parse(req.url).query,
+		email = qs.parse(query).email;
+
+	if (email) {
+		if (req.loggedIn) {
+			if (req.user.email.value !== email) {
+				req.user.email.value = email;
+				req.user.email.verified = false;
+				req.user.save();
+
+				// send verification email
+				console.log("TODO: send verification email to: ", email);
+			}
+
+			res.send("ok: " + email);
+		} else {
+			res.writeHead(401, {'Content-Type': 'text/plain'});
+			res.end("no user logged in");	
+		}
+	} else {
+		res.writeHead(405, {'Content-Type': 'text/plain'});
+		res.end("no email in request");
 	}
 })
 

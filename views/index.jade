@@ -7,8 +7,10 @@ div.container
 				h1.logo mustwatch.it
 				p
 					em I'm a To-do list for your Videos, and I'm awesome!
-				p
+				div
 					a.twitter-follow-button(href="https://twitter.com/mustwatchit", data-show-count="false") Follow @mustwatchit
+					| &nbsp;
+					div.fb-like(data-href="http://www.mustwatch.it", data-send="true", data-layout="button_count", data-width="140", data-show-faces="true")
 					script
 						!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 		div#rightSide.span6
@@ -30,9 +32,13 @@ div.container
 								a.source(href="#{item.source}") #{item.source}
 								span
 									- if (item.watchers === 1)
-										span.mustwatchers #{item.watchers} mustwatcher
+										span.mustwatchers
+											span.badge 1
+											| &nbsp;mustwatcher
 									- else 
-										span.mustwatchers #{item.watchers} mustwatchers
+										span.mustwatchers
+											span.badge #{item.watchers}
+											| &nbsp;mustwatchers
 				- })
 		- else
 			p Hmmmm, no recent videos... not good ;{

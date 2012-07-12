@@ -73,6 +73,45 @@ $(document).ready(function(){
 	})
 
 
+	$('body').on('click', 'body.mine #addEmail', function(ev){
+		ev.preventDefault();
+		var email = encodeURIComponent($('#emailAddress').val());
+
+		$.ajax({
+			url: '/addEmail?email='+email,
+			type: "GET",
+			success: function(){
+				$('#emailNotificationSent').removeClass('hidden');
+				$('#emailNotificationError').addClass('hidden');
+			},
+			error: function(){
+				$('#emailNotificationSent').addClass('hidden');
+				$('#emailNotificationError').removeClass('hidden');
+			}
+		})
+		return false;
+	});
+
+	$('body').on('click', 'body.mine #setPeriod', function(ev){
+		ev.preventDefault();
+		var period = encodeURIComponent($('#emailAddress').val());
+
+		$.ajax({
+			url: '/addEmail?email='+email,
+			type: "GET",
+			success: function(){
+				$('#emailNotificationSent').removeClass('hidden');
+				$('#emailNotificationError').addClass('hidden');
+			},
+			error: function(){
+				$('#emailNotificationSent').addClass('hidden');
+				$('#emailNotificationError').removeClass('hidden');
+			}
+		})
+		return false;
+	});
+
+
 	function onResize() {
 		var vHeight = $(window).height(),
 			vWidth = $(window).width();			

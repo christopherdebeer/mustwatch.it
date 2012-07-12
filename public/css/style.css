@@ -42,6 +42,34 @@ a.btn-warning {
     font-weight: normal;
 }
 
+/*Social buttons*/
+
+
+div.fb-like {
+    display: inline-block;
+    position: relative;
+    top: -3px;
+}
+body.video div.fb-like {
+    bottom: -3px;
+    top: auto;
+}
+
+body.video .socialInfo {
+    margin-bottom: 10px;
+}
+
+body.video .twitter-share-button {
+    position: relative;
+    bottom: -5px;
+}
+
+
+
+
+
+
+
 
 #guide {
     background: none repeat scroll 0 0 #1A1A1A;
@@ -70,21 +98,21 @@ a.btn-warning {
     list-style: none;
 }
 #videos li .video {
-    background-color: #BBBBBB;
+    background-color: #ddd;
     border-radius: 5px 5px 5px 5px;
     margin-bottom: 0;
     margin-left: 5px;
     margin-top: 5px;
     padding: 10px;
 }
-#videos li.video:hover {
+/*#videos li.video:hover {
     background-color: #FFD200;
     color: #000;
     cursor: default;
     -moz-box-shadow:    inset 0 0 3px #000000;
     -webkit-box-shadow: inset 0 0 3px #000000;
     box-shadow:         inset 0 0 3px #000000;
-}
+}*/
 #videos li:hover a.title {
     color: #000;
 }
@@ -171,6 +199,23 @@ body.video #videoMeta #info {
     margin-bottom: 30px;
 }
 
+body.video #videoMeta #info img.videoThumbnail {
+    float: left;
+    width: 120px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+body.video #videoMeta #info .sourceWrapper {
+    clear: left;
+}
+
+
+
+
+
+
+
+
 #bookmarkletLogin {
     background-color: #1A1A1A;
     color: #fff;
@@ -208,13 +253,17 @@ body {
 }
 #content {
     padding-top: 50px;
-    background-color: #ccc;
+    background-color: #F5F5F5;
     padding-bottom: 50px;
 }
 
 
 
+#notifications {
+    margin-bottom: 50px;
+}
 
+#emailAddress {margin-right: 10px;}
 
 
 /*responsive overides*/

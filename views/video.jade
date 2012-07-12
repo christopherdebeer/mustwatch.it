@@ -9,13 +9,21 @@ include includes/nav
 div.container
 	div#videoMeta.row
 		div#info.span6
+			img.videoThumbnail(src="#{video.thumbnail}")
 			h1 #{video.title}
-			p Saved from:&nbsp;
+			p.sourceWrapper Saved from:&nbsp;
 				a.source(href="#{video.source}") #{video.source}
-			- if (video.score > 1)
-				p #{video.score} mustwatchers
-			- if (video.score === 1)
-				p #{video.score} mustwatcher
+			div.socialInfo 
+				- if (video.score > 1)
+					span.badge #{video.score}
+					| &nbsp;mustwatchers 
+				- if (video.score === 1)
+						span.badge #{video.score}
+						| &nbsp;mustwatchers
+				a(href="https://twitter.com/share", class="twitter-share-button", data-text="Check out this video", data-via="mustwatchit", data-related="mustwatchit", data-hashtags="mustwatchit", data-dnt="true") Tweet Video
+				div.fb-like(data-href="http://www.mustwatch.it/video/#{video.provider}/#{video.id}", data-send="true", data-layout="button_count", data-width="300", data-show-faces="true")
+				script
+					!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			.buttons
 				- if (req.loggedIn)
 					- if (!hasVideo)

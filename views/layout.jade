@@ -6,6 +6,24 @@ html
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(name="description", content="I'm a To-do list for your Videos.")
 		meta(name="author", content="christopher de Beer @christopherdb")
+
+		- if (page !== "video")
+			meta(property="og:title", content="mustwatch.it")
+			meta(property="og:description", content="I'm a To-do list for your Videos, and I'm awesome!")
+			meta(property="og:image", content="http://www.mustwatch.it/img/logo-full-300.png")
+			meta(property="og:url", content="http://www.mustwatch.it")
+			meta(property="og:site_name", content="mustwatch.it")
+			meta(property="og:type", content="website")
+
+		- if (page === 'video' && video)
+			meta(property="og:title", content="#{video.title}")
+			meta(property="og:description", content="Remember to watch this video, with mustwatch.it")
+			meta(property="og:image", content="#{video.thumbnail}")
+			meta(property="og:url", content="http://www.mustwatch.it/video/#{video.provider}/#{video.id}")
+			meta(property="og:site_name", content="mustwatch.it")
+			meta(property="og:type", content="video")
+
+		meta(property="fb:app_id", content="501633056518868")
 		link(href="/css/bootstrap.css", rel="stylesheet", type="text/css")
 		link(href="/css/bootstrap-responsive.css", rel="stylesheet", type="text/css")
 		link(href="/css/style.css", rel="stylesheet", type="text/css")
@@ -19,6 +37,15 @@ html
 		link(rel="apple-touch-icon-precomposed", sizes="72x72", href="../assets/ico/apple-touch-icon-72-precomposed.png")
 		link(rel="apple-touch-icon-precomposed", href="../assets/ico/apple-touch-icon-57-precomposed.png")
 	body(class="#{page}")
+		div#fb-root
+		script
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=501633056518868";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
 		#content!= body
 		include includes/footer
 	- if (page)
