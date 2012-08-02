@@ -94,22 +94,23 @@ $(document).ready(function(){
 
 	$('body').on('click', 'body.mine #setPeriod', function(ev){
 		ev.preventDefault();
-		var period = encodeURIComponent($('#emailAddress').val());
+		var period = $("form .radio input[name='period']:checked").val();
 
 		$.ajax({
-			url: '/addEmail?email='+email,
+			url: '/updateReminderFreq?freq='+period,
 			type: "GET",
 			success: function(){
-				$('#emailNotificationSent').removeClass('hidden');
-				$('#emailNotificationError').addClass('hidden');
+				$('#emailFreqUpdated').removeClass('hidden');
+				$('#emailFreqError').addClass('hidden');
 			},
 			error: function(){
-				$('#emailNotificationSent').addClass('hidden');
-				$('#emailNotificationError').removeClass('hidden');
+				$('#emailFreqUpdated').addClass('hidden');
+				$('#emailFreqError').removeClass('hidden');
 			}
 		})
 		return false;
 	});
+
 
 
 	function onResize() {

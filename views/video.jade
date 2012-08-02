@@ -1,4 +1,20 @@
 include includes/nav
+// Google Code for view Video Conversion Page
+script(type="text/javascript")
+	/* <![CDATA[ */
+	var google_conversion_id = 1003317107;
+	var google_conversion_language = "en";
+	var google_conversion_format = "3";
+	var google_conversion_color = "ffffff";
+	var google_conversion_label = "APqvCN3tsAMQ88613gM";
+	var google_conversion_value = 0;
+	/* ]]> */
+script(type="text/javascript", src="http://www.googleadservices.com/pagead/conversion.js")
+noscript
+	div(style="display:inline;")
+	img(height="1", width="1", style="border-style:none;", alt="", src="http://www.googleadservices.com/pagead/conversion/1003317107/?value=0&amp;label=APqvCN3tsAMQ88613gM&amp;guid=ON&amp;script=0")
+
+
 .darkWrapper
 	.container
 		.row
@@ -24,20 +40,20 @@ div.container
 				div.fb-like(data-href="http://www.mustwatch.it/video/#{video.provider}/#{video.id}", data-send="true", data-layout="button_count", data-width="300", data-show-faces="true")
 				script
 					!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-			.buttons
+			.buttons(data-hasVideo="#{hasVideo}", data-watched="#{video.watched}")
 				- if (req.loggedIn)
 					- if (!hasVideo)
 						a.btn.btn-large.btn-warning.addVideo(href="#", title="Add this video to your account", data-id="#{video.id}", data-provider="#{video.provider}") Add to your Videos
-						a.btn.hidden.btn-large.btn-warning.markAsWatched(href="#", title="Mark as watched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as watched
-						a.btn.hidden.btn-large.btn-warning.markAsUnwatched(href="#", title="Mark as unwatched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as unwatched
-					- if (hasVideo && video.watched) 
+						a.btn.hidden.btn-large.btn-warning.markAsWatched(href="#", title="Mark as watched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as Watched
+						a.btn.hidden.btn-large.btn-warning.markAsUnwatched(href="#", title="Mark as unwatched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as Unwatched
+					- else if (hasVideo && video.watched) 
 						a.btn.hidden.btn-large.btn-warning.addVideo(href="#", title="Add this video to your account", data-id="#{video.id}", data-provider="#{video.provider}") Add to your Videos
-						a.btn.hidden.btn-large.btn-warning.markAsWatched(href="#", title="Mark as watched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as watched
-						a.btn.btn-large.btn-warning.markAsUnwatched(href="#", title="Mark as unwatched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as unwatched
+						a.btn.hidden.btn-large.btn-warning.markAsWatched(href="#", title="Mark as watched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as Watched
+						a.btn.btn-large.btn-warning.markAsUnwatched(href="#", title="Mark as unwatched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as Unwatched
 					- else if (hasVideo && !video.watched)
-						a.btn.btn-large.btn-warning.addVideo(href="#", title="Add this video to your account", data-id="#{video.id}", data-provider="#{video.provider}") Add to your Videos
-						a.btn.btn-large.btn-warning.markAsWatched(href="#", title="Mark as watched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as watched
-						a.btn.hidden.btn-large.btn-warning.markAsUnwatched(href="#", title="Mark as unwatched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as unwatched
+						a.hidden.btn.btn-large.btn-warning.addVideo(href="#", title="Add this video to your account", data-id="#{video.id}", data-provider="#{video.provider}") Add to your Videos
+						a.btn.btn-large.btn-warning.markAsWatched(href="#", title="Mark as watched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as Watched
+						a.btn.hidden.btn-large.btn-warning.markAsUnwatched(href="#", title="Mark as unwatched", data-id="#{video.id}", data-provider="#{video.provider}") Mark as Unwatched
 				- else
 					p Create an account or log in for more options.
 

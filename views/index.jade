@@ -18,6 +18,23 @@ div.container
 			p mustwatch.it is a To-do list app/service for saving and managing videos you want to watch at a later date.
 			p To register an account just log in with your desired authentication method at the top right of this page, we'll handle the rest.
 			p If you already have an account, go to the <a class="label label-warning" href="/bookmarklet">Bookmarklet</a> page or the <a class="label label-warning" href="/faq">Frequently Asked Questions</a> to find out more information on how to use mustwatch.it
+	div.row#subsubs
+		div.span4#notifications.subsub
+			h4 Reminders
+			img.reminder(src="/img/reminder.png")
+			p Get email reminders of videos you've forgotten to watch. <strong>Always optional</strong> (opt-in), weekly or monthly.
+			p 
+				em Comming very soon...
+		div.span4#supportedProviders.subsub
+			h4 Supported platforms
+			img(src="/img/providers/youtube.png", alt="Youtube")
+			img(src="/img/providers/vimeo.png", alt="Vimeo")
+			p Save videos from <strong>Youtube</strong> or <strong>Vimeo</strong> to watch later, with more platforms to come.
+			p We're also considering allowing <strong>Slideshare</strong> and <strong>Soundcloud</strong>, what do you think?
+		div.span4.subsub
+			h4 Get in touch
+			p We'd really like you're thoughts on using mustwacth.it, whether it be critcism, praise or feature requests. contact us at <a class="label label-warning" href="mailto:hello@mustwatch.it">hello@mustwatch.it</a> or <a class="label label-warning" href="http://twitter.com/mustwatchit">@mustwatchit</a> on Twitter
+
 	div.row
 		- if (recentVideos.length)
 			ul#videos.thumbnails

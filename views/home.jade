@@ -34,8 +34,8 @@ div.container
 						- })
 		div#rightSide.span6
 			#notifications
-				h3 Notifications
-				p Optional weekly/monthly reminders of unwatched Videos, coming soon.
+				h3 Unwatched Reminders
+				p Optional weekly/monthly email reminders of your unwatched Videos.
 				#emailNotificationSent.hidden.alert.alert-success
 					span
 						strong Great Success!&nbsp;
@@ -52,18 +52,55 @@ div.container
 					span
 						strong Error:&nbsp;
 						| Unable to upadte your reminder frequency.
-				form.hidden.form-search
+				#emailFreqUpdated.hidden.alert.alert-success
+					span
+						strong Great Success!&nbsp;
+						| Your email reminders frequency has been updated.
+				#emailFreqError.hidden.alert
+					span 
+						strong Error:&nbsp;
+						| Unable to update your reminder frequency.
+				form.form-search
 					- if (!req.user.email.verified)
-						input#emailAddress.input-medium.search-query(type="text")
-						| &nbsp;
-						button#addEmail.btn(type="submit") Set email address
-						label.radio
-							input(type="radio",checked,value="weekly",id="periodWeekly",name="period")
-							| Weekly&nbsp;
-						label.radio
-							input(type="radio",checked,value="monthly",id="periodMonthly",name="period")
-							| Monthly&nbsp;
-						button#setPeriod.btn(type="submit") Update notification frequency
+						div.section
+							p You need to verify your email address to recieve reminders.
+							input#emailAddress.span3.input-medium.search-query(type="text",value="#{req.user.email.value}")
+							| &nbsp;
+							button#addEmail.btn(type="submit") Set email address
+					- else
+						div.section
+							p 
+								em Changing your email address will require you to re-verify it.
+							input#emailAddress.span3.input-medium.search-query(type="text",value="#{req.user.email.value}")
+							| &nbsp;
+							button#addEmail.btn(type="submit") Change email address
+						div.section
+							p 
+								strong Reminder frequency:&nbsp;
+								em Select how often you'd like your reminder emails to be sent to the above email address.
+							label.radio
+								- if (req.user.email.period === "none")
+									input(type="radio",checked,value="none",id="periodNone",name="period")
+									| None&nbsp;
+								- else
+									input(type="radio",value="none",id="periodNone",name="period")
+									| None&nbsp;
+							label.radio
+								- if (req.user.email.period === "weekly")
+									input(type="radio",checked,value="weekly",id="periodWeekly",name="period")
+									| Weekly&nbsp;
+								- else 
+									input(type="radio",value="weekly",id="periodWeekly",name="period")
+									| Weekly&nbsp;
+							label.radio
+								- if (req.user.email.period === "monthly")
+									input(type="radio",checked, value="monthly",id="periodMonthly",name="period")
+									| Monthly&nbsp;
+								- else
+									input(type="radio",value="monthly",id="periodMonthly",name="period")
+									| Monthly&nbsp;
+							button#setPeriod.btn(type="submit") Update
+
 
 			h3 Watched Videos
 			p These are the videos you're added to your account and marked as watched.	

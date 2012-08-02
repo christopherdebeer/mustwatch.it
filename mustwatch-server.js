@@ -9,6 +9,7 @@ var express 		= require('express'),
 	redis 			= require('redis'),
 	redisClient 	= redis.createClient(),
 	_ 				= require('underscore');
+	
 
 var app = module.exports = express.createServer();
 
@@ -16,8 +17,10 @@ var app = module.exports = express.createServer();
 
 // Attach custom Config and DB properties
 app.configure( function() {
-  app.config  = require("./lib/config");
-  app.db      = require("./lib/dbconfig");
+  app.config  	= require("./lib/config");
+  app.db      	= require("./lib/dbconfig");
+
+  app.reminders = require("./lib/reminders")(app);
 })
 
 // Configure Everyauth
@@ -49,6 +52,13 @@ app.configure(function(){
 	 
 	  next();
 	});
+
+	app.use(function(req, res, next){
+
+		if (req.loggedIn) console.log("user: " + req.user.source.screenName + " : " + req.url);
+		else console.log("non-user : " + req.url);
+		next();
+	})
 });
 
 
@@ -111,6 +121,7 @@ app.get('/mine', function (req, res) {
 	else { 
 		// console.log(req.user.videos); 
 		res.render('home', {page: "mine", req: req});
+		console.log(req.user.email);
 	}
 });
 
@@ -148,7 +159,7 @@ app.get('/video/:provider/:id', function (req, res) {
 				if (req.loggedIn) {
 					for (var emb in req.user.videos) {
 						if (req.user.videos[emb].id === req.params.id && req.user.videos[emb].provider === req.params.provider)	{
-							videoInfo.watched = req.user.videos[emb];
+							videoInfo.watched = req.user.videos[emb].watched || false;
 							hasVideo = true;
 						}
 					} 
@@ -354,9 +365,12 @@ app.get('/addEmail', function(req, res){
 				req.user.email.verified = false;
 				req.user.save();
 
-				// send verification email
-				console.log("TODO: send verification email to: ", email);
 			}
+			// send verification email
+			app.reminders.sendVerificationEmail(req.user.id, function(err, data){
+				// res.json({err: err, data: data});
+				console.log("verification email sent to: ", email)
+			})
 
 			res.send("ok: " + email);
 		} else {
@@ -367,6 +381,52 @@ app.get('/addEmail', function(req, res){
 		res.writeHead(405, {'Content-Type': 'text/plain'});
 		res.end("no email in request");
 	}
+});
+
+
+app.get('/updateReminderFreq', function(req, res){
+	var query = url.parse(req.url).query,
+		freq = qs.parse(query).freq;
+
+	if (freq) {
+		if (req.loggedIn) {
+			if (req.user.email.period !== freq) {
+				req.user.email.period = freq;
+				req.user.save();
+			}
+
+			res.send("ok: " + freq);
+		} else {
+			res.writeHead(401, {'Content-Type': 'text/plain'});
+			res.end("no user logged in");	
+		}
+	} else {
+		res.writeHead(405, {'Content-Type': 'text/plain'});
+		res.end("no frequency in request");
+	}
+});
+
+
+
+
+app.get('/verifyEmail', function(req, res) {
+	if (req.loggedIn) {
+		app.reminders.sendVerificationEmail(req.user.id, function(err, data){
+			res.json({err: err, data: data});
+		})
+	} else {
+		res.json({msg: "no user logged in"});
+	}
+})
+
+app.get('/confirmEmail/:code', function(req, res) {
+
+	var code = req.params.code;
+
+	app.reminders.checkVerificationCode(code, function(err, user){
+		console.log("email confirmed: ", err, user.email.value);
+		res.render('confirmEmail', {page: "confirmEmail", req: req, err: err});
+	});
 })
 
 
@@ -387,7 +447,16 @@ app.get('/logincheck', function(req, res){
 
 app.get('/userList', function(req, res){
 	app.db.User.find({}, function(err, users){
-		if (!err) res.json({count: users.length, users: _.map(users, function(user){return {user: user.source, videoCount: user.videos.length}})});
+		if (!err) res.json({
+			count: users.length,
+			users: _.map( users, function(user){
+				return {
+					user: user.source,
+					email: user.email,
+					videoCount: user.videos.length
+				};
+			})
+		});
 		else {
 			console.log("eror fetching all users /userList");
 			res.json({error: err})

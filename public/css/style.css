@@ -66,9 +66,29 @@ body.video .twitter-share-button {
 
 
 
+ /*Homepage subsection puffs*/
 
+ #subsubs {
+    margin-bottom: 30px;
+ }
 
-
+ #subsubs .subsub  {
+    overflow: auto;
+ }
+ #subsubs h4 {
+    margin-bottom: 10px;
+ }
+ #subsubs #supportedProviders img {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    clear: left;
+    float: left;
+}
+#subsubs #notifications img.reminder {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    float: left;
+}
 
 
 #guide {
@@ -257,13 +277,19 @@ body {
     padding-bottom: 50px;
 }
 
+body.mine div.section {
+    margin-top: 20px;
+}
 
+body.mine #setPeriod {
+    margin-left: 10px;
+}
 
-#notifications {
+body.mine #notifications {
     margin-bottom: 50px;
 }
 
-#emailAddress {margin-right: 10px;}
+body.mine #emailAddress {margin-right: 10px;}
 
 
 /*responsive overides*/
