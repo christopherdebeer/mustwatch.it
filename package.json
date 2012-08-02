@@ -1,0 +1,14 @@
+{
+  "name": "mustwatch.it",
+  "scripts": {
+    "start": "mustwatch-server.js"
+  },
+  "version": "0.1.0",
+  "engines": {
+    "node": "0.6.x"
+  },
+  "subdomain": "mustwatch.it.christopherdebeer",
+  "dependencies": {
+    "node_hash": "~0.2.0"
+  }
+}

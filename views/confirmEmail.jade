@@ -1,0 +1,20 @@
+include includes/nav
+
+div.container
+	div.row
+		div#leftSide.span6
+			div#preview
+				h1.logo mustwatch.it
+				p
+					em I'm a To-do list for your Videos, and I'm awesome!
+				p
+					a.twitter-follow-button(href="https://twitter.com/mustwatchit", data-show-count="false") Follow @mustwatchit
+					script
+						!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+		div#rightSide.span6
+			h2 Email Verification
+			- if (err)
+				p Error verifying email address.
+			- else
+				p <strong>Congratulations</strong> your email address has been verified.
+			p To update your preferences and view your videos, go to: <a href="/mine" title="Your Videos">Your Videos</a>
